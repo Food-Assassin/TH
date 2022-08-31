@@ -19,9 +19,13 @@ mc.world.events.beforeItemUse.subscribe(t => {
 			var menu = new ui.ActionFormData()
 			menu = menu.title('菜单')
 			menu = menu.body('测试中')
-			menu = menu.button('1')
+			menu = menu.button('自杀')
 			menu = menu.button('2')
-			menu.show(player)
+			menu.show(player).then((arg) => {
+				if (arg.selection == 0 ) {
+					player.kill()
+				}
+			})
 		}
 		menu()
 	}

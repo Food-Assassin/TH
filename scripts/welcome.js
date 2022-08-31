@@ -7,5 +7,5 @@ mc.world.events.beforeChat.subscribe(z => {
 })
 
 mc.world.events.playerJoin.subscribe(p => {
-    mc.world.getPlayers().next.
+    p.player.runCommandAsync('say 欢迎回来！')
 })
