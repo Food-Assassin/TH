@@ -13,15 +13,15 @@ world.events.chat.subscribe(event => {
 });
 
 
-world.events.tick.subscribe(evd => {
-	if (evd.currentTick % 20 != 0) return;
-	const request = new HttpRequest(`${host}`).setMethod(HttpRequestMethod.GET);
-	http.request(request).then(res => {
-		if (res.status == 400) return;
-		const body = JSON.parse(res.body);
-		body.r.forEach(element => {
-			world.getDimension('overworld').runCommand(`tellraw @a { "rawtext": [{ "text": "<${element[0]}>${element[1]}" }]}`)
-		});
-		// body.forEach(message => world.getDimension('overworld').runCommand(`tellraw @a { "rawtext": [{ "text": "<${message.name}> (${message.user}) ${message.message}" }]}`));
- 	});
-});
+// world.events.tick.subscribe(evd => {
+// 	if (evd.currentTick % 20 != 0) return;
+// 	const request = new HttpRequest(`${host}`).setMethod(HttpRequestMethod.GET);
+// 	http.request(request).then(res => {
+// 		if (res.status == 400) return;
+// 		const body = JSON.parse(res.body);
+// 		body.r.forEach(element => {
+// 			world.getDimension('overworld').runCommand(`tellraw @a { "rawtext": [{ "text": "<${element[0]}>${element[1]}" }]}`)
+// 		});
+// 		// body.forEach(message => world.getDimension('overworld').runCommand(`tellraw @a { "rawtext": [{ "text": "<${message.name}> (${message.user}) ${message.message}" }]}`));
+//  	});
+// });
