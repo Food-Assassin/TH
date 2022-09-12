@@ -1,3 +1,3 @@
-import "scripts/menu.js"
-import "scripts/welcome.js"
-import "scripts/LJJ.js"
+import "./menu.js"
+import "./welcome.js"
+// import "./LJJ.js"

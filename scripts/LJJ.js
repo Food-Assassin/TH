@@ -9,14 +9,16 @@ mc.world.events.chat.subscribe(event => {
 	const request = new net.HttpRequest(`${host}/${(sender.name.replaceAll(' ','_'))}/${(encodeURI(message.replaceAll('/','／')))}`)
 		.setMethod(net.HttpRequestMethod.GET);
         // console.log(`${host}/${sender.name.replaceAll(' ','_').toString('base64') }/${message.toString('base64') }`)
-	net.http.request(request).catch(err => console.warn(err));
+	net.http.request(request)
 });
 
 mc.world.events.tick.subscribe(evd => {
 	if (evd.currentTick % 20 != 0) return;
 	const request = new net.HttpRequest(`${host}`).setMethod(net.HttpRequestMethod.GET);
 	net.http.request(request).then(res => {
-		if (res.status == 400) return;
+		if (res.status == 402 || res.status == 3) {
+			net.http.cancelAll('~')
+		};
 		const body = JSON.parse(res.body);
 		body.r.forEach(element => {
 			mc.world.getDimension('overworld').runCommand(`tellraw @a { "rawtext": [{ "text": "<${element[0]}>${element[1]}" }]}`)

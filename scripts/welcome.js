@@ -1,7 +1,6 @@
 import * as mc from "mojang-minecraft"
 import * as ui from 'mojang-minecraft-ui'
 
-var i = 0
 var player
 var pn = Array.from(mc.world.getPlayers()).length
 function welcome() {
@@ -11,9 +10,7 @@ function welcome() {
     welcome = welcome.button1('关闭')
     welcome = welcome.button2('关闭')
     welcome = welcome.show(player).then((arg) => {
-        if (arg.selection == 0) {
-            pn = Array.from(mc.world.getPlayers()).length
-        } else if (arg.selection == 1) {
+        if (arg.selection > -1) {
             pn = Array.from(mc.world.getPlayers()).length
         }
     })
@@ -24,15 +21,10 @@ mc.world.events.playerJoin.subscribe(p => {
 })
 
 mc.world.events.tick.subscribe(t => {
-    if (i >= 40) {
-        if (pn < Array.from(mc.world.getPlayers()).length) {
-                welcome()
-            } else {
-                pn = Array.from(mc.world.getPlayers()).length
-            }
-            i = 0
+    if (t.currentTick % 20 !== 0) return
+    if (pn < Array.from(mc.world.getPlayers()).length) {
+        welcome()
     } else {
-        i++
+        pn = Array.from(mc.world.getPlayers()).length
     }
-    }
-)
+})
