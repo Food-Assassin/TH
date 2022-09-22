@@ -834,7 +834,7 @@ var item = {
 	"minecraft:wooden_shovel": "木锹",
 	"minecraft:wooden_slab": "橡木台阶/云杉木台阶/白桦木台阶/丛林木台阶/金合欢木台阶/深色橡木台阶",
 	"minecraft:wooden_sword": "木剑",
-	"minecraft:wool": "羊毛",
+	"minecraft:wool": ["白色羊毛", "橙色羊毛", "品红色羊毛", "淡蓝色羊毛", "黄色羊毛", "黄绿色羊毛", "粉红色羊毛", "灰色羊毛", "淡灰色羊毛", "青色羊毛", "紫色羊毛", "蓝色羊毛", "棕色羊毛", "绿色羊毛", "红色羊毛", "黑色羊毛"],
 	"minecraft:writable_book": "书与笔",
 	"minecraft:yellow_candle": "黄色蜡烛",
 	"minecraft:yellow_dye": "黄色染料",
@@ -847,6 +847,10 @@ var item = {
 	"minecraft:zombie_villager_spawn_egg": "僵尸村民刷怪蛋"
 }
 
-export function itemID(ID = 'minecraft:air') {
-	return item[ID]
+export function itemID(ID = 'minecraft:air', data = 0) {
+	if (Array.isArray(item[ID])) {
+		return item[ID][data]
+	} else {
+		return item[ID]
+	}
 }

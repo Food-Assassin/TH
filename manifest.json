@@ -5,7 +5,7 @@
     "name": "THgametest",
     "uuid": "eed5e2ec-ba63-48ff-88a8-53907bec5976",
     "version": [ 1, 0, 0 ],
-    "min_engine_version": [ 1, 14, 0 ]
+    "min_engine_version": [ 1, 18, 10 ]
   },
   "modules": [
     {

@@ -56,7 +56,7 @@ function sell(player) {
     for (let i = 0; i < 36; i++) {
         if (inv.getItem(i) !== undefined) {
             invlist.push(inv.getItem(i))
-            selllist.push(itemID(inv.getItem(i).id))
+            selllist.push(itemID(inv.getItem(i).id, inv.getItem(i).data))
         }
     }
     if (selllist.length === 0) {
